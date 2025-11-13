@@ -1,0 +1,5 @@
+poll_interval_seconds: 120
+source_registry: ../../configs/sources.yaml
+rate_limit_burst: 10
+max_parallel_requests: 8
+user_agent: "DailyBriefFetcher/1.0"

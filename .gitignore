@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pyo
+.env
+.cache/
+.poetry/
+node_modules/
+.next/
+.mobile_build/
+.DS_Store
+*.xcworkspace
+build/
+.gradle/
+.idea/

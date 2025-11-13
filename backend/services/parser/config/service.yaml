@@ -1,0 +1,8 @@
+queue: article.fetched
+batch_size: 50
+language_models:
+  detector: langdetect
+  ner: spacy-md
+boilerplate_rules:
+  - 'newsletter signup'
+  - 'related articles'

@@ -1,0 +1,26 @@
+sources:
+  - id: nyt_rss
+    name: The New York Times
+    locale: en-US
+    priority: 1
+    rss: https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
+    reputable: true
+    rate_limit_per_min: 60
+  - id: guardian_rss
+    name: The Guardian
+    locale: en-GB
+    priority: 2
+    rss: https://www.theguardian.com/world/rss
+    reputable: true
+  - id: elpais_api
+    name: El Pais API
+    locale: es-ES
+    priority: 2
+    json_api: https://api.elpais.com/news
+    reputable: true
+  - id: gulfnews
+    name: Gulf News
+    locale: ar-AE
+    priority: 3
+    sitemap: https://gulfnews.com/sitemap.xml
+    reputable: true

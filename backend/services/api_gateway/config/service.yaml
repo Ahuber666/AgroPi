@@ -1,0 +1,3 @@
+graphql_playground: true
+etag_ttl_seconds: 600
+rate_limit_per_minute: 120

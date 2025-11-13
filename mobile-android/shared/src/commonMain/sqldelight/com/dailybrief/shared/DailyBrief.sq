@@ -1,0 +1,7 @@
+CREATE TABLE events (
+  id TEXT NOT NULL PRIMARY KEY,
+  title TEXT NOT NULL,
+  topic TEXT NOT NULL,
+  summary TEXT NOT NULL,
+  score REAL NOT NULL
+);

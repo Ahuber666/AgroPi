@@ -1,0 +1,8 @@
+rbac:
+  super_admins:
+    - admin@dailybrief.ai
+  roles:
+    - name: ingestion
+      permissions: [sources:read, sources:write]
+    - name: moderation
+      permissions: [events:read, takedown:write]
