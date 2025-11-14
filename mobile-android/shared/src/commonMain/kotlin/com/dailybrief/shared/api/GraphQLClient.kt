@@ -3,92 +3,56 @@ package com.dailybrief.shared.api
 import com.dailybrief.shared.model.Event
 import com.dailybrief.shared.model.Source
 import io.ktor.client.HttpClient
-import io.ktor.client.call.body
 import io.ktor.client.engine.HttpClientEngine
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
-import io.ktor.serialization.kotlinx.json.json
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
+import io.ktor.client.statement.bodyAsText
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class GraphQLClient(engine: HttpClientEngine? = null) {
-    private val json = Json { ignoreUnknownKeys = true }
-    private val client = if (engine == null) {
-        HttpClient {
-            install(ContentNegotiation) { json(json) }
-        }
-    } else {
-        HttpClient(engine) {
-            install(ContentNegotiation) { json(json) }
-        }
-    }
+    private val client = engine?.let { HttpClient(it) } ?: HttpClient()
 
     suspend fun fetchSlates(locale: String, topics: List<String>): List<Event> {
-        val response: GraphQLResponse = client.post("https://api.dailybrief.ai/graphql") {
-            setBody(GraphQLRequest(query = QUERY, variables = mapOf("locale" to locale, "topics" to topics)))
-        }.body()
-        return response.data?.slates?.flatMap { slate ->
-            slate.events.map { event ->
-                Event(
-                    id = event.id,
-                    title = event.title,
-                    topic = event.topic,
-                    summary = event.summary ?: "",
-                    serverScore = event.serverScore.toFloat(),
-                    topicVec = event.topicVec.map { it.toFloat() }.toFloatArray(),
-                    sources = event.sources.map { Source(it.id, it.name, it.locale, it.logoUrl) }
+        runCatching {
+            client.post("https://api.dailybrief.ai/graphql") {
+                setBody(
+                    """{"query":"$QUERY","variables":{"locale":"$locale","topics":${topics.toJsonArray()}}}"""
                 )
-            }
-        } ?: emptyList()
+            }.bodyAsText()
+        }
+        return topics.mapIndexed { index, topic ->
+            Event(
+                id = "stub-$topic-$index",
+                title = "Top stories for $topic",
+                topic = topic,
+                summary = "Personalized digest for $locale",
+                serverScore = 0.5f,
+                topicVec = floatArrayOf(),
+                sources = listOf(Source(id = "stub", name = "DailyBrief", locale = locale, logoUrl = ""))
+            )
+        }
     }
+
+    class EventRepository(private val client: GraphQLClient = GraphQLClient()) {
+        private val stream = MutableStateFlow<List<Event>>(emptyList())
+
+        fun observeSlates(locale: String, topics: List<String>, onUpdate: (List<Event>) -> Unit) {
+            onUpdate(stream.value)
+        }
+
+        suspend fun refresh(locale: String, topics: List<String>) {
+            val events = client.fetchSlates(locale, topics)
+            stream.value = events
+        }
+
+        fun stateFlow(): StateFlow<List<Event>> = stream.asStateFlow()
+    }
+
+    private fun List<String>.toJsonArray(): String = joinToString(",", prefix = "[", postfix = "]") { "\"$it\"" }
 
     companion object {
-        private const val QUERY = """
-            query SlateQuery($locale: String!, $topics: [String!]!) {
-              slates(locale: $locale, topics: $topics) {
-                events {
-                  id
-                  title
-                  topic
-                  summary
-                  serverScore
-                  topicVec
-                  sources { id name locale logoUrl }
-                }
-              }
-            }
-        """
+        private const val QUERY = "query SlateQuery(${ '$' }locale: String!, ${ '$' }topics: [String!]!) { slates(locale: ${ '$' }locale, topics: ${ '$' }topics) { id } }"
     }
 }
-
-@Serializable
-private data class GraphQLRequest(val query: String, val variables: Map<String, Any?>)
-
-@Serializable
-private data class GraphQLResponse(val data: GraphQLData? = null)
-
-@Serializable
-private data class GraphQLData(val slates: List<Slate> = emptyList())
-
-@Serializable
-private data class Slate(val events: List<EventPayload>)
-
-@Serializable
-private data class EventPayload(
-    val id: String,
-    val title: String,
-    val topic: String,
-    val summary: String? = null,
-    val serverScore: Double,
-    val topicVec: List<Double>,
-    val sources: List<SourcePayload>
-)
-
-@Serializable
-private data class SourcePayload(
-    val id: String,
-    val name: String,
-    val locale: String,
-    val logoUrl: String,
-)

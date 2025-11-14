@@ -5,3 +5,10 @@ CREATE TABLE events (
   summary TEXT NOT NULL,
   score REAL NOT NULL
 );
+
+insertItem:
+INSERT OR REPLACE INTO events(id, title, topic, summary, score)
+VALUES (?, ?, ?, ?, ?);
+
+selectAll:
+SELECT * FROM events;

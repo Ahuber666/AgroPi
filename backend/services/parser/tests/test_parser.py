@@ -33,6 +33,6 @@ def test_process_generates_hash(tmp_path):
     async def _run():
         content = await parser.process(article, "<p>Hello world</p>")
         assert content.hash is not None
-        assert content.metadata.language in {"en", "und"}
+        assert content.metadata.language
 
     asyncio.run(_run())

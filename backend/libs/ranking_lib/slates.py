@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import hashlib
 from collections import defaultdict
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from typing import Dict, Iterable, List, Sequence
 
@@ -14,7 +14,7 @@ from .scoring import RankerConfig, score_event
 
 @dataclass
 class SlateBuilder:
-    config: RankerConfig = RankerConfig()
+    config: RankerConfig = field(default_factory=RankerConfig)
     min_score: float = 0.25
     max_per_source: int = 2
     max_per_country: int = 5

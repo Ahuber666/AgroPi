@@ -11,7 +11,7 @@ class EventStore(private val driver: SqlDriver) {
     suspend fun upsert(events: List<Event>) = withContext(Dispatchers.Default) {
         database.transaction {
             events.forEach { event ->
-                database.eventsQueries.insertItem(
+                database.dailyBriefQueries.insertItem(
                     id = event.id,
                     title = event.title,
                     topic = event.topic,
@@ -23,7 +23,7 @@ class EventStore(private val driver: SqlDriver) {
     }
 
     suspend fun list(): List<Event> = withContext(Dispatchers.Default) {
-        database.eventsQueries.selectAll().executeAsList().map {
+        database.dailyBriefQueries.selectAll().executeAsList().map {
             Event(
                 id = it.id,
                 title = it.title,
