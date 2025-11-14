@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.build/master.swiftdeps"
+  },
+  "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.derived/runner.swift": {
+    "dependencies": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.build/runner.d",
+    "object": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.build/runner.swift.o",
+    "swiftmodule": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.build/runner~partial.swiftmodule",
+    "swift-dependencies": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.build/runner.swiftdeps",
+    "diagnostics": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.build/runner.dia"
+  }
+}

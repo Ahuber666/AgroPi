@@ -1,0 +1,19 @@
+{
+  "": {
+    "swift-dependencies": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/master.swiftdeps"
+  },
+  "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/GraphQLClient.swift": {
+    "dependencies": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/GraphQLClient.d",
+    "object": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/GraphQLClient.swift.o",
+    "swiftmodule": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/GraphQLClient~partial.swiftmodule",
+    "swift-dependencies": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/GraphQLClient.swiftdeps",
+    "diagnostics": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/GraphQLClient.dia"
+  },
+  "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/Models.swift": {
+    "dependencies": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/Models.d",
+    "object": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/Models.swift.o",
+    "swiftmodule": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/Models~partial.swiftmodule",
+    "swift-dependencies": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/Models.swiftdeps",
+    "diagnostics": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/Models.dia"
+  }
+}

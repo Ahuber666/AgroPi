@@ -1,0 +1,657 @@
+{
+  "builtTestProducts" : [
+    {
+      "binaryPath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.xctest/Contents/MacOS/CorePackageTests",
+      "packagePath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios",
+      "productName" : "CorePackageTests"
+    }
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.Core-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/sources",
+      "importPath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/GraphQLClient.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/Models.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "Core",
+      "moduleOutputPath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules/Core.swiftmodule",
+      "objects" : [
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/GraphQLClient.swift.o",
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/Models.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx13.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/include/Core-Swift.h",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "mobile_ios"
+      ],
+      "outputFileMapPath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/GraphQLClient.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/Models.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules/Core.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/GraphQLClient.swift",
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/Models.swift"
+      ],
+      "tempsPath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.CorePackageTests-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.build/sources",
+      "importPath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.derived/runner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules/CoreTests.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "CorePackageTests",
+      "moduleOutputPath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules/CorePackageTests.swiftmodule",
+      "objects" : [
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.build/runner.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx13.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.build/include/CorePackageTests-Swift.h",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "mobile_ios"
+      ],
+      "outputFileMapPath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules/CorePackageTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.derived/runner.swift"
+      ],
+      "tempsPath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.CoreTests-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/sources",
+      "importPath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/Tests/CoreTests/GraphQLClientTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules/Core.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "CoreTests",
+      "moduleOutputPath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules/CoreTests.swiftmodule",
+      "objects" : [
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/GraphQLClientTests.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "mobile_ios"
+      ],
+      "outputFileMapPath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/GraphQLClientTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules/CoreTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/Tests/CoreTests/GraphQLClientTests.swift"
+      ],
+      "tempsPath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "Core" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "Core",
+      "-package-name",
+      "mobile_ios",
+      "-c",
+      "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/GraphQLClient.swift",
+      "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/Models.swift",
+      "-I",
+      "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/include/Core-Swift.h",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "mobile_ios",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "CorePackageTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CorePackageTests",
+      "-package-name",
+      "mobile_ios",
+      "-c",
+      "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.derived/runner.swift",
+      "-I",
+      "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.build/include/CorePackageTests-Swift.h",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "mobile_ios",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "CoreTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CoreTests",
+      "-package-name",
+      "mobile_ios",
+      "-c",
+      "/Users/al/Ahuber666/DailyBrief/mobile-ios/Tests/CoreTests/GraphQLClientTests.swift",
+      "-I",
+      "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "mobile_ios",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "Core" : [
+
+    ],
+    "CorePackageTests" : [
+      "CoreTests",
+      "Core"
+    ],
+    "CoreTests" : [
+      "Core"
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+    "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.derived/runner.swift" : {
+      "inputs" : [
+
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.derived/runner.swift"
+        }
+      ]
+    }
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/GraphQLClient.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/Models.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/sources"
+    },
+    "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.derived/runner.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.build/sources"
+    },
+    "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/GraphQLClient.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/Models.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/GraphQLClientTests.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.product/Objects.LinkFileList"
+    },
+    "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/Tests/CoreTests/GraphQLClientTests.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/sources"
+    },
+    "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}

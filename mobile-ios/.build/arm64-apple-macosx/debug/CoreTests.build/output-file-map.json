@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/master.swiftdeps"
+  },
+  "/Users/al/Ahuber666/DailyBrief/mobile-ios/Tests/CoreTests/GraphQLClientTests.swift": {
+    "dependencies": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/GraphQLClientTests.d",
+    "object": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/GraphQLClientTests.swift.o",
+    "swiftmodule": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/GraphQLClientTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/GraphQLClientTests.swiftdeps",
+    "diagnostics": "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/GraphQLClientTests.dia"
+  }
+}
