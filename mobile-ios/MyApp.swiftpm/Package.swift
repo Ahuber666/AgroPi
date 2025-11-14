@@ -16,11 +16,21 @@ let package = Package(
             displayVersion: "1.0",
             bundleVersion: "1",
             iconAssetName: "AppIcon",
-            accentColorAssetName: "AccentColor"
+            accentColorAssetName: "AccentColor",
+            supportedDeviceFamilies: [
+                .pad,
+                .phone
+            ],
+            supportedInterfaceOrientations: [
+                .portrait,
+                .landscapeLeft,
+                .landscapeRight,
+                .portraitUpsideDown(.when(deviceFamilies: [.pad]))
+            ]
         )
     ],
     dependencies: [
-        .package(path: "..")
+        .package(name: "Core", path: "..")
     ],
     targets: [
         .executableTarget(

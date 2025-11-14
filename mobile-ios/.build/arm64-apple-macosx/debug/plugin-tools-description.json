@@ -36,6 +36,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/NewsFeedService.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
         },
         {
@@ -48,7 +52,8 @@
       "moduleOutputPath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules/Core.swiftmodule",
       "objects" : [
         "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/GraphQLClient.swift.o",
-        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/Models.swift.o"
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/Models.swift.o",
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/NewsFeedService.swift.o"
       ],
       "otherArguments" : [
         "-target",
@@ -117,13 +122,18 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/NewsFeedService.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules/Core.swiftmodule"
         }
       ],
       "prepareForIndexing" : false,
       "sources" : [
         "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/GraphQLClient.swift",
-        "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/Models.swift"
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/Models.swift",
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/NewsFeedService.swift"
       ],
       "tempsPath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build",
       "wholeModuleOptimization" : false
@@ -240,6 +250,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/Tests/CoreTests/LiveNewsServiceTests.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
         },
         {
@@ -255,7 +269,8 @@
       "moduleName" : "CoreTests",
       "moduleOutputPath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules/CoreTests.swiftmodule",
       "objects" : [
-        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/GraphQLClientTests.swift.o"
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/GraphQLClientTests.swift.o",
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/LiveNewsServiceTests.swift.o"
       ],
       "otherArguments" : [
         "-target",
@@ -319,12 +334,17 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/LiveNewsServiceTests.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules/CoreTests.swiftmodule"
         }
       ],
       "prepareForIndexing" : false,
       "sources" : [
-        "/Users/al/Ahuber666/DailyBrief/mobile-ios/Tests/CoreTests/GraphQLClientTests.swift"
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/Tests/CoreTests/GraphQLClientTests.swift",
+        "/Users/al/Ahuber666/DailyBrief/mobile-ios/Tests/CoreTests/LiveNewsServiceTests.swift"
       ],
       "tempsPath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build",
       "wholeModuleOptimization" : false
@@ -343,6 +363,7 @@
       "-c",
       "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/GraphQLClient.swift",
       "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/Models.swift",
+      "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/NewsFeedService.swift",
       "-I",
       "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules",
       "-target",
@@ -475,6 +496,7 @@
       "mobile_ios",
       "-c",
       "/Users/al/Ahuber666/DailyBrief/mobile-ios/Tests/CoreTests/GraphQLClientTests.swift",
+      "/Users/al/Ahuber666/DailyBrief/mobile-ios/Tests/CoreTests/LiveNewsServiceTests.swift",
       "-I",
       "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Modules",
       "-target",
@@ -581,6 +603,10 @@
         {
           "kind" : "file",
           "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/Models.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/Sources/Core/NewsFeedService.swift"
         }
       ],
       "outputFilePath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/sources"
@@ -616,11 +642,19 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/Core.build/NewsFeedService.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.build/runner.swift.o"
         },
         {
           "kind" : "file",
           "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/GraphQLClientTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/LiveNewsServiceTests.swift.o"
         }
       ],
       "outputFilePath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CorePackageTests.product/Objects.LinkFileList"
@@ -635,6 +669,10 @@
         {
           "kind" : "file",
           "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/Tests/CoreTests/GraphQLClientTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/Tests/CoreTests/LiveNewsServiceTests.swift"
         }
       ],
       "outputFilePath" : "/Users/al/Ahuber666/DailyBrief/mobile-ios/.build/arm64-apple-macosx/debug/CoreTests.build/sources"
