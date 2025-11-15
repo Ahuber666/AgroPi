@@ -12,3 +12,22 @@ node_modules/
 build/
 .gradle/
 .idea/
+
+# Build outputs
+**/bin/
+**/obj/
+
+# User-specific
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Tooling
+.vs/
+
+# Misc
+*.log
+*.tmp
+*.temp
+
