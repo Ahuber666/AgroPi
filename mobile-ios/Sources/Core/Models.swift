@@ -6,13 +6,15 @@ public struct Event: Identifiable, Equatable, Codable {
     public let summary: String
     public let serverScore: Double
     public let updatedAt: Date
+    public let source: String
 
-    public init(id: String, title: String, summary: String, serverScore: Double, updatedAt: Date) {
+    public init(id: String, title: String, summary: String, serverScore: Double, updatedAt: Date, source: String) {
         self.id = id
         self.title = title
         self.summary = summary
         self.serverScore = serverScore
         self.updatedAt = updatedAt
+        self.source = source
     }
 }
 

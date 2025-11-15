@@ -66,14 +66,15 @@ public final class GraphQLClient {
                 return
             }
             let now = self?.dateProvider() ?? Date()
-            let events = response.data.slates.flatMap { slate in
-                slate.events.map { payload in
-                    Event(
-                        id: payload.id,
-                        title: payload.title,
-                        summary: payload.summary ?? "",
-                        serverScore: payload.serverScore,
-                        updatedAt: now
+           let events = response.data.slates.flatMap { slate in
+               slate.events.map { payload in
+                   Event(
+                       id: payload.id,
+                       title: payload.title,
+                       summary: payload.summary ?? "",
+                       serverScore: payload.serverScore,
+                        updatedAt: now,
+                        source: "GraphQL"
                     )
                 }
             }

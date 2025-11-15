@@ -14,6 +14,7 @@ final class GraphQLClientTests: XCTestCase {
                 XCTAssertEqual(events.count, 1)
                 XCTAssertEqual(events.first?.title, "Breaking Story")
                 XCTAssertEqual(events.first?.updatedAt, Date(timeIntervalSince1970: 0))
+                XCTAssertEqual(events.first?.source, "GraphQL")
             case .failure(let error):
                 XCTFail("Unexpected error: \(error)")
             }

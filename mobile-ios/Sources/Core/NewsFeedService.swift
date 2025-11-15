@@ -72,7 +72,8 @@ public final class LiveNewsService {
     }
 
     private func fetch(source: Source, completion: @escaping (Result<[Event], Error>) -> Void) {
-        let request = URLRequest(url: source.url)
+        var request = URLRequest(url: source.url)
+        request.setValue("DailyBrief-iOS/1.0", forHTTPHeaderField: "User-Agent")
         session.makeDataTask(with: request) { data, _, error in
             if let error = error {
                 completion(.failure(error))
@@ -85,15 +86,15 @@ public final class LiveNewsService {
             let events: [Event]
             switch source.kind {
             case .redditJSON:
-                events = self.parseReddit(data: data)
+                events = self.parseReddit(data: data, sourceName: source.name)
             case .rss:
-                events = self.parseRSS(data: data)
+                events = self.parseRSS(data: data, sourceName: source.name)
             }
             completion(.success(events))
         }.resume()
     }
 
-    private func parseReddit(data: Data) -> [Event] {
+    private func parseReddit(data: Data, sourceName: String) -> [Event] {
         guard let listing = try? JSONDecoder().decode(RedditListing.self, from: data) else { return [] }
         let now = dateProvider()
         return listing.data.children.map { child in
@@ -105,12 +106,13 @@ public final class LiveNewsService {
                 title: child.data.title,
                 summary: summary,
                 serverScore: child.data.score.map { Double($0) } ?? 0,
-                updatedAt: timestamp
+                updatedAt: timestamp,
+                source: sourceName
             )
         }
     }
 
-    private func parseRSS(data: Data) -> [Event] {
+    private func parseRSS(data: Data, sourceName: String) -> [Event] {
         let parser = RSSParser(data: data)
         return parser.parse().map { item in
             let title = item.title ?? "Untitled"
@@ -121,7 +123,8 @@ public final class LiveNewsService {
                 title: title,
                 summary: description,
                 serverScore: 0.5,
-                updatedAt: item.pubDate ?? dateProvider()
+                updatedAt: item.pubDate ?? dateProvider(),
+                source: sourceName
             )
         }
     }

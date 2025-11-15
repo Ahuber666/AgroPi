@@ -19,8 +19,8 @@ final class LiveNewsServiceTests: XCTestCase {
             switch result {
             case .success(let events):
                 XCTAssertEqual(events.count, 2)
-                XCTAssertTrue(events.contains(where: { $0.title == "Reddit Story" }))
-                XCTAssertTrue(events.contains(where: { $0.title == "BBC Story" }))
+                XCTAssertTrue(events.contains(where: { $0.title == "Reddit Story" && $0.source == "reddit" }))
+                XCTAssertTrue(events.contains(where: { $0.title == "BBC Story" && $0.source == "bbc" }))
             case .failure(let error):
                 XCTFail("Unexpected error: \(error)")
             }
