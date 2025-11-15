@@ -1,4 +1,0 @@
-encoder_model: sentence-transformers/paraphrase-multilingual-mpnet-base-v2
-batch_size: 32
-vector_backend: pgvector
-vector_table: article_embeddings

@@ -1,3 +1,0 @@
-simhash_threshold: 8
-minhash_bands: 32
-canonicalization_window_minutes: 30

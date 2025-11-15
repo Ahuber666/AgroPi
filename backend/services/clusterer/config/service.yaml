@@ -1,4 +1,0 @@
-knn_neighbors: 15
-cluster_algorithm: hdbscan
-burst_window_minutes: 60
-burst_threshold: 2.5

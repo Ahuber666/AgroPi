@@ -1,7 +1,0 @@
-llm_endpoint: https://llm-gateway.dailybrief.ai/generate
-style_guardrails:
-  length_sentences: [2, 5]
-  require_time_reference: true
-  require_citations: true
-max_articles: 8
-min_articles: 3

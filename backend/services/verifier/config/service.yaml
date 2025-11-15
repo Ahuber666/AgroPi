@@ -1,3 +1,0 @@
-entailment_model: facebook/bart-large-mnli
-numeric_tolerance: 0.1
-disagreement_threshold: 0.35
