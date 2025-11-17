@@ -16,6 +16,8 @@ public class OnnxYoloDetector : IDisposable
 {
     private readonly InferenceSession _session;
     private readonly YoloOutputParser _parser;
+    private readonly string _inputName;
+    private readonly string _outputName;
     private bool _disposed;
 
     public OnnxYoloDetector(string modelPath, string labelsPath)
@@ -27,6 +29,14 @@ public class OnnxYoloDetector : IDisposable
 
         _session = new InferenceSession(modelPath);
         _parser = new YoloOutputParser(labelsPath);
+
+        _inputName = _session.InputMetadata.ContainsKey(AppConfig.InputName)
+            ? AppConfig.InputName
+            : _session.InputMetadata.Keys.First();
+
+        _outputName = _session.OutputMetadata.ContainsKey(AppConfig.OutputName)
+            ? AppConfig.OutputName
+            : _session.OutputMetadata.Keys.First();
     }
 
     public IList<YoloBoundingBox> Detect(Bitmap bitmap)
@@ -48,11 +58,11 @@ public class OnnxYoloDetector : IDisposable
 
         var tensor = ExtractTensor(resized);
 
-        var inputValue = DisposableNamedOnnxValue.CreateFromTensor(AppConfig.InputName, tensor);
+        var inputValue = DisposableNamedOnnxValue.CreateFromTensor(_inputName, tensor);
         try
         {
             using IDisposableReadOnlyCollection<DisposableNamedOnnxValue> results = _session.Run(new[] { inputValue });
-            var output = results.First(r => r.Name == AppConfig.OutputName).AsEnumerable<float>().ToArray();
+            var output = results.First(r => r.Name == _outputName).AsEnumerable<float>().ToArray();
 
             return _parser.ParseOutputs(output, AppConfig.ScoreThreshold, AppConfig.IoUThreshold, bitmap.Width, bitmap.Height);
         }

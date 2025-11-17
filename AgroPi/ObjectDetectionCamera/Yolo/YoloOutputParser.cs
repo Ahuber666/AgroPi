@@ -13,14 +13,14 @@ public class YoloOutputParser
     private const int COL_COUNT = 13;
     private const int BOXES_PER_CELL = 5;
     private const int BOX_INFO_FEATURE_COUNT = 5;
-    private const int CLASS_COUNT = 20;
-    private const int CHANNEL_COUNT = 125;
     private const int CELL_WIDTH = AppConfig.InputWidth / COL_COUNT;
     private const int CELL_HEIGHT = AppConfig.InputHeight / ROW_COUNT;
 
     private readonly float[] _anchors = { 1.08f, 1.19f, 3.42f, 4.41f, 6.63f, 11.38f, 9.42f, 5.11f, 16.62f, 10.52f };
     private readonly string[] _labels;
     private readonly Color[] _colors;
+    private readonly int _classCount;
+    private readonly int _channelCount;
 
     public YoloOutputParser(string labelsPath)
     {
@@ -39,6 +39,8 @@ public class YoloOutputParser
             throw new InvalidOperationException("Labels file does not contain any entries.");
         }
 
+        _classCount = _labels.Length;
+        _channelCount = BOXES_PER_CELL * (_classCount + BOX_INFO_FEATURE_COUNT);
         _colors = GenerateColors(_labels.Length);
     }
 
@@ -54,9 +56,11 @@ public class YoloOutputParser
             throw new ArgumentNullException(nameof(modelOutput));
         }
 
-        if (modelOutput.Length != CHANNEL_COUNT * ROW_COUNT * COL_COUNT)
+        var expectedLength = _channelCount * ROW_COUNT * COL_COUNT;
+
+        if (modelOutput.Length != expectedLength)
         {
-            throw new ArgumentException($"Unexpected model output length {modelOutput.Length}.", nameof(modelOutput));
+            throw new ArgumentException($"Unexpected model output length {modelOutput.Length}. Expected {expectedLength}.", nameof(modelOutput));
         }
 
         var boxes = ExtractBoundingBoxes(modelOutput, scoreThreshold);
@@ -103,7 +107,7 @@ public class YoloOutputParser
             {
                 for (int box = 0; box < BOXES_PER_CELL; box++)
                 {
-                    int channel = box * (CLASS_COUNT + BOX_INFO_FEATURE_COUNT);
+                    int channel = box * (_classCount + BOX_INFO_FEATURE_COUNT);
                     float x = (col + Sigmoid(modelOutput[GetOffset(channel, col, row)])) * CELL_WIDTH;
                     float y = (row + Sigmoid(modelOutput[GetOffset(channel + 1, col, row)])) * CELL_HEIGHT;
                     float width = MathF.Exp(modelOutput[GetOffset(channel + 2, col, row)]) * _anchors[box * 2] * CELL_WIDTH;
@@ -170,8 +174,8 @@ public class YoloOutputParser
 
     private float[] ExtractClasses(float[] modelOutput, int channel, int x, int y)
     {
-        var classes = new float[CLASS_COUNT];
-        for (int i = 0; i < CLASS_COUNT; i++)
+        var classes = new float[_classCount];
+        for (int i = 0; i < _classCount; i++)
         {
             classes[i] = modelOutput[GetOffset(channel + BOX_INFO_FEATURE_COUNT + i, x, y)];
         }
