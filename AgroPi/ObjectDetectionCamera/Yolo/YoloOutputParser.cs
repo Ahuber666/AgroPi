@@ -22,6 +22,8 @@ public class YoloOutputParser
     private readonly int _classCount;
     private readonly int _channelCount;
 
+    public int ChannelCount => _channelCount;
+
     public YoloOutputParser(string labelsPath)
     {
         if (!File.Exists(labelsPath))
@@ -46,6 +48,7 @@ public class YoloOutputParser
 
     public IList<YoloBoundingBox> ParseOutputs(
         float[] modelOutput,
+        bool channelFirst,
         float scoreThreshold,
         float iouThreshold,
         int imageWidth,
@@ -56,14 +59,16 @@ public class YoloOutputParser
             throw new ArgumentNullException(nameof(modelOutput));
         }
 
-        var expectedLength = _channelCount * ROW_COUNT * COL_COUNT;
+        var expectedLength = channelFirst
+            ? _channelCount * ROW_COUNT * COL_COUNT
+            : ROW_COUNT * COL_COUNT * _channelCount;
 
         if (modelOutput.Length != expectedLength)
         {
             throw new ArgumentException($"Unexpected model output length {modelOutput.Length}. Expected {expectedLength}.", nameof(modelOutput));
         }
 
-        var boxes = ExtractBoundingBoxes(modelOutput, scoreThreshold);
+        var boxes = ExtractBoundingBoxes(modelOutput, channelFirst, scoreThreshold);
         var ordered = boxes.OrderByDescending(b => b.Confidence).ToList();
         var results = new List<YoloBoundingBox>();
 
@@ -97,7 +102,7 @@ public class YoloOutputParser
         return results;
     }
 
-    private List<YoloBoundingBox> ExtractBoundingBoxes(float[] modelOutput, float scoreThreshold)
+    private List<YoloBoundingBox> ExtractBoundingBoxes(float[] modelOutput, bool channelFirst, float scoreThreshold)
     {
         var boxes = new List<YoloBoundingBox>();
 
@@ -108,13 +113,13 @@ public class YoloOutputParser
                 for (int box = 0; box < BOXES_PER_CELL; box++)
                 {
                     int channel = box * (_classCount + BOX_INFO_FEATURE_COUNT);
-                    float x = (col + Sigmoid(modelOutput[GetOffset(channel, col, row)])) * CELL_WIDTH;
-                    float y = (row + Sigmoid(modelOutput[GetOffset(channel + 1, col, row)])) * CELL_HEIGHT;
-                    float width = MathF.Exp(modelOutput[GetOffset(channel + 2, col, row)]) * _anchors[box * 2] * CELL_WIDTH;
-                    float height = MathF.Exp(modelOutput[GetOffset(channel + 3, col, row)]) * _anchors[box * 2 + 1] * CELL_HEIGHT;
-                    float objectness = Sigmoid(modelOutput[GetOffset(channel + 4, col, row)]);
+                    float x = (col + Sigmoid(modelOutput[GetOffset(channel, col, row, channelFirst)])) * CELL_WIDTH;
+                    float y = (row + Sigmoid(modelOutput[GetOffset(channel + 1, col, row, channelFirst)])) * CELL_HEIGHT;
+                    float width = MathF.Exp(modelOutput[GetOffset(channel + 2, col, row, channelFirst)]) * _anchors[box * 2] * CELL_WIDTH;
+                    float height = MathF.Exp(modelOutput[GetOffset(channel + 3, col, row, channelFirst)]) * _anchors[box * 2 + 1] * CELL_HEIGHT;
+                    float objectness = Sigmoid(modelOutput[GetOffset(channel + 4, col, row, channelFirst)]);
 
-                    var classProbabilities = ExtractClasses(modelOutput, channel, col, row);
+                    var classProbabilities = ExtractClasses(modelOutput, channel, col, row, channelFirst);
                     var (classIndex, classScore) = GetTopResult(classProbabilities);
                     float confidence = GetConfidence(objectness, classScore);
 
@@ -167,17 +172,19 @@ public class YoloOutputParser
         return result;
     }
 
-    private static int GetOffset(int channel, int x, int y)
+    private int GetOffset(int channel, int x, int y, bool channelFirst)
     {
-        return channel * ROW_COUNT * COL_COUNT + y * COL_COUNT + x;
+        return channelFirst
+            ? channel * ROW_COUNT * COL_COUNT + y * COL_COUNT + x
+            : y * COL_COUNT * _channelCount + x * _channelCount + channel;
     }
 
-    private float[] ExtractClasses(float[] modelOutput, int channel, int x, int y)
+    private float[] ExtractClasses(float[] modelOutput, int channel, int x, int y, bool channelFirst)
     {
         var classes = new float[_classCount];
         for (int i = 0; i < _classCount; i++)
         {
-            classes[i] = modelOutput[GetOffset(channel + BOX_INFO_FEATURE_COUNT + i, x, y)];
+            classes[i] = modelOutput[GetOffset(channel + BOX_INFO_FEATURE_COUNT + i, x, y, channelFirst)];
         }
 
         return Softmax(classes);

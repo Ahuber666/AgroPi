@@ -18,6 +18,7 @@ public class OnnxYoloDetector : IDisposable
     private readonly YoloOutputParser _parser;
     private readonly string _inputName;
     private readonly string _outputName;
+    private readonly int _channelCount;
     private bool _disposed;
 
     public OnnxYoloDetector(string modelPath, string labelsPath)
@@ -29,6 +30,8 @@ public class OnnxYoloDetector : IDisposable
 
         _session = new InferenceSession(modelPath);
         _parser = new YoloOutputParser(labelsPath);
+
+        _channelCount = _parser.ChannelCount;
 
         _inputName = _session.InputMetadata.ContainsKey(AppConfig.InputName)
             ? AppConfig.InputName
@@ -62,14 +65,51 @@ public class OnnxYoloDetector : IDisposable
         try
         {
             using IDisposableReadOnlyCollection<DisposableNamedOnnxValue> results = _session.Run(new[] { inputValue });
-            var output = results.First(r => r.Name == _outputName).AsEnumerable<float>().ToArray();
+            var output = results.First(r => r.Name == _outputName);
 
-            return _parser.ParseOutputs(output, AppConfig.ScoreThreshold, AppConfig.IoUThreshold, bitmap.Width, bitmap.Height);
+            var tensorOutput = output.AsTensor<float>();
+            bool channelFirst = IsChannelFirst(tensorOutput);
+            var buffer = tensorOutput.ToArray();
+
+            return _parser.ParseOutputs(
+                buffer,
+                channelFirst,
+                AppConfig.ScoreThreshold,
+                AppConfig.IoUThreshold,
+                bitmap.Width,
+                bitmap.Height);
         }
         finally
         {
             (inputValue as IDisposable)?.Dispose();
         }
+    }
+
+    private bool IsChannelFirst(Tensor<float> tensor)
+    {
+        if (tensor.Rank < 4)
+        {
+            return true;
+        }
+
+        var dims = tensor.Dimensions.ToArray();
+
+        // ONNX outputs are typically either [1, C, H, W] or [1, H, W, C].
+        // Prefer the ordering that aligns the channel count with the expected parser layout.
+        int channelIndex = Array.IndexOf(dims, _channelCount);
+
+        if (channelIndex == 1)
+        {
+            return true; // NCHW
+        }
+
+        if (channelIndex == dims.Length - 1)
+        {
+            return false; // NHWC
+        }
+
+        // Fallback to channel-first when the layout is ambiguous.
+        return true;
     }
 
     private static DenseTensor<float> ExtractTensor(Bitmap bitmap)
