@@ -109,6 +109,16 @@ public class OnnxYoloDetector : IDisposable
         }
 
         // Fallback to channel-first when the layout is ambiguous.
+        var heightIndex = Array.IndexOf(dims, AppConfig.InputHeight);
+        var widthIndex = Array.IndexOf(dims, AppConfig.InputWidth);
+
+        // If dimensions match NHWC (1, H, W, C) prefer that ordering; otherwise default to NCHW
+        if (heightIndex == 1 && widthIndex == 2 && dims.Last() == _channelCount)
+        {
+            return false;
+        }
+
+        // Default: channel-first (1, C, H, W)
         return true;
     }
 
