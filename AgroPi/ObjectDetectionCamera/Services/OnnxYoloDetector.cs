@@ -93,6 +93,22 @@ public class OnnxYoloDetector : IDisposable
         }
 
         var dims = tensor.Dimensions.ToArray();
+
+        // ONNX outputs are typically either [1, C, H, W] or [1, H, W, C].
+        // Prefer the ordering that aligns the channel count with the expected parser layout.
+        int channelIndex = Array.IndexOf(dims, _channelCount);
+
+        if (channelIndex == 1)
+        {
+            return true; // NCHW
+        }
+
+        if (channelIndex == dims.Length - 1)
+        {
+            return false; // NHWC
+        }
+
+        // Fallback to channel-first when the layout is ambiguous.
         var heightIndex = Array.IndexOf(dims, AppConfig.InputHeight);
         var widthIndex = Array.IndexOf(dims, AppConfig.InputWidth);
 
