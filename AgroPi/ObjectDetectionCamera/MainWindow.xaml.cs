@@ -216,11 +216,11 @@ public partial class MainWindow : Window
         using var graphics = Graphics.FromImage(bitmap);
         graphics.SmoothingMode = SmoothingMode.AntiAlias;
         using var font = new System.Drawing.Font("Segoe UI", 14, System.Drawing.FontStyle.Bold, GraphicsUnit.Pixel);
-        using var pen = new System.Drawing.Pen(Color.Red, 3);
 
         foreach (var box in boxes ?? Array.Empty<YoloBoundingBox>())
         {
             var rect = box.Rect;
+            using var pen = new System.Drawing.Pen(box.BoxColor, 3);
             graphics.DrawRectangle(pen, rect.X, rect.Y, rect.Width, rect.Height);
 
             var labelText = $"{box.Label} {box.Confidence:P0}";
