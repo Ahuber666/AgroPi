@@ -19,6 +19,9 @@ public class OnnxYoloDetector : IDisposable
     private readonly string _inputName;
     private readonly string _outputName;
     private readonly int _channelCount;
+    private readonly int _inputWidth;
+    private readonly int _inputHeight;
+    private readonly bool _inputChannelFirst;
     private bool _disposed;
 
     public OnnxYoloDetector(string modelPath, string labelsPath)
@@ -40,6 +43,14 @@ public class OnnxYoloDetector : IDisposable
         _outputName = _session.OutputMetadata.ContainsKey(AppConfig.OutputName)
             ? AppConfig.OutputName
             : _session.OutputMetadata.Keys.First();
+
+        var inputMeta = _session.InputMetadata[_inputName];
+        var inputDims = inputMeta.Dimensions.ToArray();
+
+        // Default to config values; override when model metadata provides explicit sizes.
+        _inputHeight = inputDims.Length >= 3 && inputDims[^2] > 0 ? inputDims[^2] : AppConfig.InputHeight;
+        _inputWidth = inputDims.Length >= 3 && inputDims[^1] > 0 ? inputDims[^1] : AppConfig.InputWidth;
+        _inputChannelFirst = DetermineChannelFirst(inputDims);
     }
 
     public IList<YoloBoundingBox> Detect(Bitmap bitmap)
@@ -67,6 +78,8 @@ public class OnnxYoloDetector : IDisposable
                 channelFirst,
                 AppConfig.ScoreThreshold,
                 AppConfig.IoUThreshold,
+                _inputWidth,
+                _inputHeight);
                 AppConfig.InputWidth,
                 AppConfig.InputHeight);
 
@@ -80,6 +93,18 @@ public class OnnxYoloDetector : IDisposable
         }
     }
 
+    private (Bitmap resized, float scale, int offsetX, int offsetY) ResizeWithLetterbox(Bitmap source)
+    {
+        var resized = new Bitmap(_inputWidth, _inputHeight, PixelFormat.Format24bppRgb);
+
+        var scale = Math.Min(
+            _inputWidth / (float)source.Width,
+            _inputHeight / (float)source.Height);
+
+        var scaledWidth = (int)Math.Round(source.Width * scale);
+        var scaledHeight = (int)Math.Round(source.Height * scale);
+        var offsetX = (_inputWidth - scaledWidth) / 2;
+        var offsetY = (_inputHeight - scaledHeight) / 2;
     private static (Bitmap resized, float scale, int offsetX, int offsetY) ResizeWithLetterbox(Bitmap source)
     {
         var resized = new Bitmap(AppConfig.InputWidth, AppConfig.InputHeight, PixelFormat.Format24bppRgb);
@@ -157,8 +182,8 @@ public class OnnxYoloDetector : IDisposable
         }
 
         // Fallback to channel-first when the layout is ambiguous.
-        var heightIndex = Array.IndexOf(dims, AppConfig.InputHeight);
-        var widthIndex = Array.IndexOf(dims, AppConfig.InputWidth);
+        var heightIndex = Array.IndexOf(dims, _inputHeight);
+        var widthIndex = Array.IndexOf(dims, _inputWidth);
 
         // If dimensions match NHWC (1, H, W, C) prefer that ordering; otherwise default to NCHW
         if (heightIndex == 1 && widthIndex == 2 && dims.Last() == _channelCount)
@@ -170,9 +195,25 @@ public class OnnxYoloDetector : IDisposable
         return true;
     }
 
-    private static DenseTensor<float> ExtractTensor(Bitmap bitmap)
+    private DenseTensor<float> ExtractTensor(Bitmap bitmap)
     {
-        var tensor = new DenseTensor<float>(new[] { 1, 3, AppConfig.InputHeight, AppConfig.InputWidth });
+        int batch = 1;
+        if (_inputChannelFirst)
+        {
+            var tensor = new DenseTensor<float>(new[] { batch, 3, _inputHeight, _inputWidth });
+            CopyBitmapToTensor(bitmap, tensor, channelFirst: true);
+            return tensor;
+        }
+        else
+        {
+            var tensor = new DenseTensor<float>(new[] { batch, _inputHeight, _inputWidth, 3 });
+            CopyBitmapToTensor(bitmap, tensor, channelFirst: false);
+            return tensor;
+        }
+    }
+
+    private void CopyBitmapToTensor(Bitmap bitmap, DenseTensor<float> tensor, bool channelFirst)
+    {
         var rect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
         var bitmapData = bitmap.LockBits(rect, ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
 
@@ -192,9 +233,18 @@ public class OnnxYoloDetector : IDisposable
                     float g = buffer[pixelOffset + 1] / 255f;
                     float r = buffer[pixelOffset + 2] / 255f;
 
-                    tensor[0, 0, y, x] = r;
-                    tensor[0, 1, y, x] = g;
-                    tensor[0, 2, y, x] = b;
+                    if (channelFirst)
+                    {
+                        tensor[0, 0, y, x] = r;
+                        tensor[0, 1, y, x] = g;
+                        tensor[0, 2, y, x] = b;
+                    }
+                    else
+                    {
+                        tensor[0, y, x, 0] = r;
+                        tensor[0, y, x, 1] = g;
+                        tensor[0, y, x, 2] = b;
+                    }
                 }
             }
         }
@@ -202,8 +252,28 @@ public class OnnxYoloDetector : IDisposable
         {
             bitmap.UnlockBits(bitmapData);
         }
+    }
 
-        return tensor;
+    private static bool DetermineChannelFirst(int[] dimensions)
+    {
+        if (dimensions.Length < 4)
+        {
+            return true;
+        }
+
+        // Prefer explicit positions when available, otherwise fall back to default NCHW.
+        int channelIndex = Array.IndexOf(dimensions, 3);
+        if (channelIndex == 1)
+        {
+            return true;
+        }
+
+        if (channelIndex == dimensions.Length - 1)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     public void Dispose()
