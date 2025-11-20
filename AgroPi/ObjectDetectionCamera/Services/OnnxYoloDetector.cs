@@ -80,6 +80,8 @@ public class OnnxYoloDetector : IDisposable
                 AppConfig.IoUThreshold,
                 _inputWidth,
                 _inputHeight);
+                AppConfig.InputWidth,
+                AppConfig.InputHeight);
 
             ProjectToOriginalFrame(boxes, scale, offsetX, offsetY, bitmap.Width, bitmap.Height);
             return boxes;
@@ -103,6 +105,18 @@ public class OnnxYoloDetector : IDisposable
         var scaledHeight = (int)Math.Round(source.Height * scale);
         var offsetX = (_inputWidth - scaledWidth) / 2;
         var offsetY = (_inputHeight - scaledHeight) / 2;
+    private static (Bitmap resized, float scale, int offsetX, int offsetY) ResizeWithLetterbox(Bitmap source)
+    {
+        var resized = new Bitmap(AppConfig.InputWidth, AppConfig.InputHeight, PixelFormat.Format24bppRgb);
+
+        var scale = Math.Min(
+            AppConfig.InputWidth / (float)source.Width,
+            AppConfig.InputHeight / (float)source.Height);
+
+        var scaledWidth = (int)Math.Round(source.Width * scale);
+        var scaledHeight = (int)Math.Round(source.Height * scale);
+        var offsetX = (AppConfig.InputWidth - scaledWidth) / 2;
+        var offsetY = (AppConfig.InputHeight - scaledHeight) / 2;
 
         using (var graphics = Graphics.FromImage(resized))
         {
