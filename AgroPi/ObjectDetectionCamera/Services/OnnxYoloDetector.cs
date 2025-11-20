@@ -49,16 +49,7 @@ public class OnnxYoloDetector : IDisposable
             throw new ArgumentNullException(nameof(bitmap));
         }
 
-        using var resized = new Bitmap(AppConfig.InputWidth, AppConfig.InputHeight, PixelFormat.Format24bppRgb);
-        using (var graphics = Graphics.FromImage(resized))
-        {
-            graphics.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
-            graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighSpeed;
-            graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear;
-            graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighSpeed;
-            graphics.DrawImage(bitmap, 0, 0, AppConfig.InputWidth, AppConfig.InputHeight);
-        }
-
+        var (resized, scale, offsetX, offsetY) = ResizeWithLetterbox(bitmap);
         var tensor = ExtractTensor(resized);
 
         var inputValue = DisposableNamedOnnxValue.CreateFromTensor(_inputName, tensor);
@@ -71,17 +62,74 @@ public class OnnxYoloDetector : IDisposable
             bool channelFirst = IsChannelFirst(tensorOutput);
             var buffer = tensorOutput.ToArray();
 
-            return _parser.ParseOutputs(
+            var boxes = _parser.ParseOutputs(
                 buffer,
                 channelFirst,
                 AppConfig.ScoreThreshold,
                 AppConfig.IoUThreshold,
-                bitmap.Width,
-                bitmap.Height);
+                AppConfig.InputWidth,
+                AppConfig.InputHeight);
+
+            ProjectToOriginalFrame(boxes, scale, offsetX, offsetY, bitmap.Width, bitmap.Height);
+            return boxes;
         }
         finally
         {
             (inputValue as IDisposable)?.Dispose();
+            resized.Dispose();
+        }
+    }
+
+    private static (Bitmap resized, float scale, int offsetX, int offsetY) ResizeWithLetterbox(Bitmap source)
+    {
+        var resized = new Bitmap(AppConfig.InputWidth, AppConfig.InputHeight, PixelFormat.Format24bppRgb);
+
+        var scale = Math.Min(
+            AppConfig.InputWidth / (float)source.Width,
+            AppConfig.InputHeight / (float)source.Height);
+
+        var scaledWidth = (int)Math.Round(source.Width * scale);
+        var scaledHeight = (int)Math.Round(source.Height * scale);
+        var offsetX = (AppConfig.InputWidth - scaledWidth) / 2;
+        var offsetY = (AppConfig.InputHeight - scaledHeight) / 2;
+
+        using (var graphics = Graphics.FromImage(resized))
+        {
+            graphics.Clear(Color.Black);
+            graphics.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
+            graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+            graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear;
+            graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            graphics.DrawImage(source, offsetX, offsetY, scaledWidth, scaledHeight);
+        }
+
+        return (resized, scale, offsetX, offsetY);
+    }
+
+    private static void ProjectToOriginalFrame(
+        IEnumerable<YoloBoundingBox> boxes,
+        float scale,
+        int offsetX,
+        int offsetY,
+        int originalWidth,
+        int originalHeight)
+    {
+        if (boxes == null)
+        {
+            return;
+        }
+
+        foreach (var box in boxes)
+        {
+            var x = (box.Dimensions.X - offsetX) / scale;
+            var y = (box.Dimensions.Y - offsetY) / scale;
+            var width = box.Dimensions.Width / scale;
+            var height = box.Dimensions.Height / scale;
+
+            box.Dimensions.X = Math.Clamp(x, 0, Math.Max(0, originalWidth - 1));
+            box.Dimensions.Y = Math.Clamp(y, 0, Math.Max(0, originalHeight - 1));
+            box.Dimensions.Width = Math.Clamp(width, 0, originalWidth - box.Dimensions.X);
+            box.Dimensions.Height = Math.Clamp(height, 0, originalHeight - box.Dimensions.Y);
         }
     }
 
